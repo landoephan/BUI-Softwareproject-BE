@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  web_dev:
+    build: .
+    ports:
+    - "5000:5000"
+    volumes:
+    - .:/app
+    links:
+    - mongo
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ./mongo/data:/data/db # Helps to store MongoDB data in `./mongo/data`
+    ports:
+      - "27017:27017"
